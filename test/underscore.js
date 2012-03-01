@@ -66,5 +66,43 @@ describe('Collection', function(){
 			
 		});
 		
+		it('should iterate over an array-like object', function(){
+			var arrayLike = {
+				0 : 'One',
+				1 : 'Two',
+				2 : 'Three',
+				length: 3
+			}, compare = '';
+			
+			_.each(arrayLike, function(value, key){
+				compare += value+',';
+			});
+			
+			compare.should.equal('One,Two,Three,');
+			
+		});		
 	});
+	
+	describe('#map()', function(){
+		it('should map over an array and square the numbers', function(){
+			var numbers = [2, 4, 6], squared;
+		
+			squared = _.map(numbers, function(n){
+				return n * n;
+			});
+			
+			squared.should.eql([4, 16, 36]);
+		});
+		
+		it('should map over an object and square the numbers', function(){
+			var numbers = { one: 2, two: 4, three: 6 }, squared;
+		
+			squared = _.map(numbers, function(n){
+				return n * n;
+			});
+			
+			squared.should.eql([4, 16, 36]);
+		});
+		
+	})
 });
